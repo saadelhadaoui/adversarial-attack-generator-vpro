@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 End-to-end tests for Adaptive Multi-Agent LLM Defense System.
 
@@ -35,7 +34,7 @@ def check_ollama():
     """Check if Ollama is available"""
     client = LLMClient()
     if not client.is_available():
-        pytest.skip("Ollama is not available. Please start Ollama and ensure qwen2.5:7b-instruct-q4_K_M is pulled.")
+        pytest.skip("Ollama is not available. Please start Ollama and ensure qwen2.5:14b-instruct-q4_K_M is pulled.")
     logger.info("✓ Ollama is available")
 
 
@@ -365,5 +364,3 @@ class TestEndToEnd:
 
 if __name__ == "__main__":
     pytest.main([__file__, "-v", "-s"])
-=======
->>>>>>> 9295f35bf9dbfbac66a8059558f780f28c5f2570

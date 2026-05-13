@@ -8,7 +8,7 @@ logger = logging.getLogger(__name__)
 
 
 class LLMClient:
-    def __init__(self, model: str = "qwen2.5:7b-instruct-q4_K_M", host: str = "http://127.0.0.1:11434"):
+    def __init__(self, model: str = "qwen2.5:14b-instruct-q4_K_M", host: str = "http://127.0.0.1:11434"):
         self.model = model
         self.host = host.rstrip("/")
         self.chat_url = f"{self.host}/api/chat"

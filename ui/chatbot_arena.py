@@ -69,7 +69,7 @@ def _render_trace(trace: dict | None) -> None:
 
 def render_chatbot_arena() -> None:
     _init_state()
-    render_section_header("04", "Interactive Arena", "Chatbot Arena", "Run live messages through the DefenseGraph.", "arena")
+    render_section_header("04", "Interactive Arena", "Chatbot Arena", "Live defense pipeline with real Ollama, SQLite, and RAG.", "arena")
     st.markdown(render_chatbot_pipeline_html(), unsafe_allow_html=True)
 
     c1, c2 = st.columns([1, 2])
@@ -78,8 +78,9 @@ def render_chatbot_arena() -> None:
     with c2:
         metrics = get_metrics()
         st.markdown(
+            f"<b>Current Mode:</b> {pill(st.session_state.defense_mode, 'green' if st.session_state.defense_mode == 'PROTECTION' else 'red')} "
             f"{pill(str(metrics.get('total_interactions', 0)) + ' interactions', 'purple')} "
-            f"{pill(str(metrics.get('learned_patterns_count', 0)) + ' patterns', 'green')} "
+            f"{pill(str(metrics.get('learned_patterns_count', 0)) + ' learned patterns', 'green')} "
             f"{pill(str(metrics.get('defender_rules_count', 0)) + ' rules', 'orange')}",
             unsafe_allow_html=True,
         )
@@ -89,14 +90,27 @@ def render_chatbot_arena() -> None:
     )
 
     with tab_chat:
-        for msg in st.session_state.chatbot_messages:
-            with st.chat_message(msg["role"]):
-                st.markdown(msg["content"])
-                trace = msg.get("trace")
-                if trace:
-                    st.markdown(_action_pill(trace["defender"]["action"]), unsafe_allow_html=True)
-        user_text = st.chat_input("Ask a question or paste a redacted test pattern")
-        if user_text:
+        left, right = st.columns([1.35, 1])
+        with left:
+            for msg in st.session_state.chatbot_messages:
+                with st.chat_message(msg["role"]):
+                    st.markdown(msg["content"])
+                    trace = msg.get("trace")
+                    if trace:
+                        st.markdown(_action_pill(trace["defender"]["action"]), unsafe_allow_html=True)
+            with st.form("arena_chat_form", clear_on_submit=True):
+                text_col, send_col = st.columns([5, 1])
+                user_text = text_col.text_input(
+                    "Message",
+                    placeholder="Ask a question or paste a [redacted ...] test pattern",
+                    label_visibility="collapsed",
+                )
+                submitted = send_col.form_submit_button("Send", use_container_width=True)
+        with right:
+            st.markdown('<div class="glass"><span class="eyebrow">Latest Verdict</span>', unsafe_allow_html=True)
+            _render_trace(st.session_state.chatbot_latest_trace)
+            st.markdown("</div>", unsafe_allow_html=True)
+        if submitted and user_text:
             _run(user_text)
             st.rerun()
 

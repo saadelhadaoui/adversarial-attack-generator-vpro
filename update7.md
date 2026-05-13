@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Update 7 — How to Use & Full Change Log
 
 ## How to use the system right now
@@ -7,7 +6,7 @@
 ```bash
 ollama serve
 # if you haven't pulled the model yet:
-ollama pull qwen2.5:7b-instruct-q4_K_M
+ollama pull qwen2.5:14b-instruct-q4_K_M
 ```
 
 ### 2. Run the Streamlit app
@@ -49,7 +48,7 @@ Go to **Section 04 → Chatbot Arena**, then use these tabs:
 
 | File | Status |
 |---|---|
-| `llm/client.py` | Ollama client using `qwen2.5:7b-instruct-q4_K_M` |
+| `llm/client.py` | Ollama client using `qwen2.5:14b-instruct-q4_K_M` |
 | `memory/structured_memory.py` | SQLite with 6 tables + **added `_migrate()`** for schema compatibility |
 | `memory/company_data_store.py` | Fake company data RAG + honeytoken detection |
 | `defender_agent/agent.py` | Hybrid logic: deterministic rules + RAG retrieval + LLM |
@@ -80,5 +79,3 @@ Go to **Section 04 → Chatbot Arena**, then use these tabs:
 | `ui/simulation_section.py` | Replaced fake `run_safe_simulation()` with real SQLite data |
 | `ui/evidence_section.py` | Replaced fake charts with real SQLite charts |
 | `streamlit_app.py` | Removed fake simulation state, added defense mode state |
-=======
->>>>>>> 9295f35bf9dbfbac66a8059558f780f28c5f2570

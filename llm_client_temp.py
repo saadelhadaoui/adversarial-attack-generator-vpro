@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import json
 import logging
 import requests
@@ -7,7 +6,7 @@ from typing import Dict, Any
 logger = logging.getLogger(__name__)
 
 class LLMClient:
-    def __init__(self, model_name: str = "qwen2.5:7b-instruct-q4_K_M", host: str = "http://localhost:11434"):
+    def __init__(self, model_name: str = "qwen2.5:14b-instruct-q4_K_M", host: str = "http://localhost:11434"):
         self.model_name = model_name
         self.host = host
         self.chat_url = f"{self.host}/api/chat"
@@ -71,5 +70,3 @@ class LLMClient:
             return {"error": "parse_failure", "action": "BLOCK"}
         except Exception as e:
             return {"error": "system_failure", "action": "BLOCK"}
-=======
->>>>>>> 9295f35bf9dbfbac66a8059558f780f28c5f2570

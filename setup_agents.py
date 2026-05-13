@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import os
 
 files = {
@@ -17,7 +16,7 @@ except ImportError:
 logger = logging.getLogger(__name__)
 
 class LLMClient:
-    def __init__(self, model_name: str = "qwen2.5:7b-instruct-q4_K_M"):
+    def __init__(self, model_name: str = "qwen2.5:14b-instruct-q4_K_M"):
         self.model_name = model_name
         self._availability_checked = False
         self._is_available = False
@@ -741,5 +740,3 @@ for path, content in files.items():
         os.makedirs(os.path.dirname(path), exist_ok=True)
     with open(path, "w") as f:
         f.write(content.strip())
-=======
->>>>>>> 9295f35bf9dbfbac66a8059558f780f28c5f2570

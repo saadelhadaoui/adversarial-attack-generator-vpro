@@ -7,11 +7,17 @@ def render_top_nav() -> None:
 <div class="topnav">
   <div class="brand"><span class="dot"></span>Adaptive Multi-Agent LLM Defense Lab</div>
   <div class="links">
+    <a href="#problem">Problem</a>
+    <a href="#agents">Agents</a>
+    <a href="#loop">Loop</a>
     <a href="#arena">Arena</a>
     <a href="#simulation">Simulation</a>
+    <a href="#evidence">Evidence</a>
     <a href="#memory">Memory</a>
+    <a href="#architecture">Architecture</a>
     <a href="#evaluation">Evaluation</a>
   </div>
+  <div class="status">live - safe-mode</div>
 </div>
 """,
         unsafe_allow_html=True,

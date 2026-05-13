@@ -22,7 +22,7 @@
 
 ### 2. LLM Integration
 - ✅ **LLM Client** (`llm/client.py`)
-  - Ollama integration with qwen2.5:7b-instruct-q4_K_M
+  - Ollama integration with qwen2.5:14b-instruct-q4_K_M
   - JSON response parsing
   - Availability checking
   - Error handling

@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/bin/env python3
 """
 End-to-End Demo — Adaptive Multi-Agent LLM Defense System
@@ -92,11 +91,11 @@ def main() -> None:
     # Check Ollama
     client = LLMClient()
     if not client.is_available():
-        print("\n⚠  Ollama is not available. Start Ollama and pull qwen2.5:7b-instruct-q4_K_M.")
-        print("   ollama pull qwen2.5:7b-instruct-q4_K_M")
+        print("\n⚠  Ollama is not available. Start Ollama and pull qwen2.5:14b-instruct-q4_K_M.")
+        print("   ollama pull qwen2.5:14b-instruct-q4_K_M")
         print("   ollama serve")
         sys.exit(1)
-    print("\n✓ Ollama is available (qwen2.5:7b-instruct-q4_K_M)")
+    print("\n✓ Ollama is available (qwen2.5:14b-instruct-q4_K_M)")
 
     results = {}
     all_passed = True
@@ -291,5 +290,3 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
-=======
->>>>>>> 9295f35bf9dbfbac66a8059558f780f28c5f2570

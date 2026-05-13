@@ -1,10 +1,9 @@
-<<<<<<< HEAD
 # Adaptive Multi-Agent LLM Defense System - Setup and Usage Guide
 
 ## Overview
 
 This is a **REAL, WORKING** system that demonstrates adaptive AI defense through:
-- ✅ Real LLM execution via Ollama (qwen2.5:7b-instruct-q4_K_M)
+- ✅ Real LLM execution via Ollama (qwen2.5:14b-instruct-q4_K_M)
 - ✅ Real agent pipeline execution
 - ✅ Real SQLite persistence
 - ✅ Real RAG retrieval from learned patterns
@@ -32,7 +31,7 @@ brew install ollama
 ### 2. Pull the Required Model
 
 ```bash
-ollama pull qwen2.5:7b-instruct-q4_K_M
+ollama pull qwen2.5:14b-instruct-q4_K_M
 ```
 
 ### 3. Start Ollama Server
@@ -312,7 +311,7 @@ Error: Ollama is not available
 1. Check if Ollama is running: `ps aux | grep ollama`
 2. Start Ollama: `ollama serve`
 3. Verify model is pulled: `ollama list`
-4. Pull model if needed: `ollama pull qwen2.5:7b-instruct-q4_K_M`
+4. Pull model if needed: `ollama pull qwen2.5:14b-instruct-q4_K_M`
 
 ### Database Locked
 ```
@@ -420,5 +419,3 @@ For issues or questions:
 ## License
 
 This is a research and demonstration system. Use responsibly for security research and education only.
-=======
->>>>>>> 9295f35bf9dbfbac66a8059558f780f28c5f2570

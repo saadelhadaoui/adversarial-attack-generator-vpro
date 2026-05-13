@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #!/usr/bin/env python3
 """
 System Check Script
@@ -57,14 +56,14 @@ def check_ollama():
         client = LLMClient()
         if client.is_available():
             print("✓ Ollama is running")
-            print("✓ Model: qwen2.5:7b-instruct-q4_K_M")
+            print("✓ Model: qwen2.5:14b-instruct-q4_K_M")
             return True
         else:
             print("❌ Ollama is not responding")
             print("\nStart Ollama with:")
             print("  ollama serve")
             print("\nEnsure model is pulled:")
-            print("  ollama pull qwen2.5:7b-instruct-q4_K_M")
+            print("  ollama pull qwen2.5:14b-instruct-q4_K_M")
             return False
     except Exception as e:
         print(f"❌ Error checking Ollama: {e}")
@@ -199,5 +198,3 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
-=======
->>>>>>> 9295f35bf9dbfbac66a8059558f780f28c5f2570
