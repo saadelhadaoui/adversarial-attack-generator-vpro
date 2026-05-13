@@ -42,6 +42,9 @@ def render_memory_section() -> None:
         unsafe_allow_html=True,
     )
 
+    if st.button("Refresh Memory", key="memory_refresh"):
+        st.rerun()
+
     metrics = get_metrics()
     cols = st.columns(5)
     cols[0].metric("Interactions", metrics.get("total_interactions", 0))
