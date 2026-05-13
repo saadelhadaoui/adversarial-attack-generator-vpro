@@ -4,6 +4,7 @@ from datetime import datetime
 import pandas as pd
 import streamlit as st
 
+from llm.client import LLMClient
 from ui.components import pill
 from ui.layout import render_section_header
 from utils.attack_seed_loader import load_all_attack_seeds
@@ -57,12 +58,14 @@ def _render_trace(trace: dict | None) -> None:
         st.info("No trace yet.")
         return
     d, e, lrn = trace["defender"], trace["evaluator"], trace["learner"]
-    cols = st.columns(5)
+    cb = trace.get("chatbot", {})
+    cols = st.columns(6)
     cols[0].metric("Action", d["action"])
     cols[1].metric("Threat", d["threat_family"])
     cols[2].metric("Risk", f"{d['risk_score']:.2f}")
     cols[3].metric("Defense", f"{e['defense_score']:.2f}")
     cols[4].metric("Learned", "Yes" if lrn["memory_updated"] else "No")
+    cols[5].metric("LLM", "Used" if cb.get("llm_used") else "Fallback")
     with st.expander("Full trace", expanded=True):
         st.json(trace)
 
@@ -77,13 +80,27 @@ def render_chatbot_arena() -> None:
         st.radio("Defense mode", ["PROTECTION", "CONTROLLED_EXFILTRATION"], key="defense_mode", horizontal=True)
     with c2:
         metrics = get_metrics()
+        llm = LLMClient()
+        health = llm.health()
+        server_ok = health["server_available"]
+        model_ok = health["model_available"]
         st.markdown(
             f"<b>Current Mode:</b> {pill(st.session_state.defense_mode, 'green' if st.session_state.defense_mode == 'PROTECTION' else 'red')} "
             f"{pill(str(metrics.get('total_interactions', 0)) + ' interactions', 'purple')} "
             f"{pill(str(metrics.get('learned_patterns_count', 0)) + ' learned patterns', 'green')} "
-            f"{pill(str(metrics.get('defender_rules_count', 0)) + ' rules', 'orange')}",
+            f"{pill(str(metrics.get('defender_rules_count', 0)) + ' rules', 'orange')} "
+            f"{pill('ollama online' if server_ok else 'ollama offline', 'green' if server_ok else 'red')} "
+            f"{pill('14b model ready' if model_ok else '14b model missing', 'green' if model_ok else 'orange')}",
             unsafe_allow_html=True,
         )
+        if not server_ok:
+            st.caption(f"Ollama is not reachable at `{health['host']}`. Start it with `ollama serve` or set `OLLAMA_HOST`.")
+        elif not model_ok:
+            available = ", ".join(health["available_models"][:4]) or "none"
+            st.caption(
+                f"Ollama is online at `{health['host']}`, but `{health['model']}` is not available. "
+                f"Run `ollama pull {health['model']}`. Visible models: {available}"
+            )
 
     tab_chat, tab_tests, tab_live, tab_db, tab_trace, tab_seeds = st.tabs(
         ["Chat", "Manual Tests", "Live Defense Run", "Database", "Trace", "Seeds"]
