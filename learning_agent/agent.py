@@ -49,8 +49,22 @@ class LearningAgent:
         if family == "data_exfiltration" and ("api" in text or "key" in text):
             return "api_key_exfiltration_pattern"
         if family == "prompt_injection":
+            if "system prompt" in text or "prompt marker" in text:
+                return "system_prompt_marker_pattern"
+            if "developer message" in text or "developer instruction" in text:
+                return "developer_message_extraction_pattern"
+            if "hidden instruction" in text or "invisible instruction" in text:
+                return "hidden_instruction_pattern"
+            if "document says" in text or "webpage says" in text or "email says" in text or "quoted text" in text:
+                return "indirect_prompt_injection_pattern"
             return "instruction_override_pattern"
         if family == "jailbreak_attempt":
+            if "maintenanceoverride" in text or "restricted mode" in text:
+                return "maintenance_override_pattern"
+            if "role-play as unrestricted" in text or "unrestricted assistant" in text:
+                return "roleplay_unrestricted_pattern"
+            if "disable safety" in text or "safety disabled" in text:
+                return "disable_safety_pattern"
             return "policy_bypass_pattern"
         return f"{family}_pattern"
 

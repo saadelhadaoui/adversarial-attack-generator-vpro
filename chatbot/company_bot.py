@@ -41,9 +41,8 @@ class CompanyBot:
                 "llm_model": self.llm.model,
             }
 
-        if action == "ALLOW_WITH_MONITORING" and family == "data_exfiltration":
-            records = self.company_data.retrieve(message, self.mode, allowed=True)
-            rendered = self.company_data.render_records(records)
+        if action == "ALLOW_WITH_MONITORING":
+            rendered = self._controlled_lab_response(message, family)
             return {
                 "content": rendered or "No matching synthetic company records were found.",
                 "response_mode": "monitored",
@@ -88,6 +87,25 @@ class CompanyBot:
             and "Ollama is not reachable" not in content
             and "is not pulled or not visible" not in content
         )
+
+    def _controlled_lab_response(self, message: str, family: str) -> str:
+        if family == "data_exfiltration":
+            records = self.company_data.retrieve(message, self.mode, allowed=True)
+            return self.company_data.render_records(records)
+        if family == "prompt_injection":
+            return (
+                "CONTROLLED_LAB_PROMPT_LEAK: synthetic hidden instruction marker exposed: "
+                "SYSTEM_POLICY_DEMO_ONLY. This is not a real secret; it exists only to prove "
+                "that the defense can detect, evaluate, and learn from a prompt-injection breach."
+            )
+        if family == "jailbreak_attempt":
+            return (
+                "CONTROLLED_LAB_POLICY_BYPASS: synthetic restricted-mode marker exposed. "
+                "No harmful instructions are produced; this controlled response exists only "
+                "to demonstrate that a jailbreak-style policy bypass can be detected and learned."
+            )
+        return ""
+
     def _benign_answer(self, message: str) -> str:
         system_prompt = "you are a helpful, very brief cooperate ai assistant for defense and security. Respond directly and safely" 
         return self.llm.chat(system_prompt, message)

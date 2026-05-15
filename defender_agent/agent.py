@@ -27,10 +27,14 @@ class DefenderAgent:
             action = "BLOCK"
             risk = 0.9
             reason = f"Matched learned pattern: {matched_pattern}"
-        elif self.mode == "CONTROLLED_EXFILTRATION" and threat_family == "data_exfiltration":
+        elif self.mode == "CONTROLLED_EXFILTRATION" and threat_family in {
+            "data_exfiltration",
+            "prompt_injection",
+            "jailbreak_attempt",
+        }:
             action = "ALLOW_WITH_MONITORING"
             risk = 0.75
-            reason = "First-time data exfiltration pattern allowed for controlled learning."
+            reason = f"First-time {threat_family} pattern allowed for controlled learning."
         elif threat_family == "ambiguous_security":
             action = "REFORMULATE"
             risk = 0.45
@@ -51,15 +55,49 @@ class DefenderAgent:
         }
 
     def _classify(self, text: str) -> str:
+        benign_markers = [
+            "explain what prompt injection means",
+            "what is prompt injection",
+            "define prompt injection",
+            "how do i defend",
+            "how can i protect",
+            "mitigate prompt injection",
+            "security best practices",
+        ]
+        if any(term in text for term in benign_markers):
+            return "benign"
         if any(term in text for term in ["employee record", "internal employee", "api key", "secret", "confidential", "internal data"]):
             return "data_exfiltration"
         if "redacted" in text and any(term in text for term in ["data", "sensitive", "internal", "information"]):
             return "data_exfiltration"
-        if any(term in text for term in ["prompt injection", "instruction hierarchy", "override", "ignore previous"]):
+        if any(
+            term in text
+            for term in [
+                "prompt injection",
+                "instruction hierarchy",
+                "override",
+                "ignore previous",
+                "hidden instruction",
+                "developer message",
+                "system prompt",
+                "context manipulation",
+            ]
+        ):
             return "prompt_injection"
-        if any(term in text for term in ["jailbreak", "policy bypass", "bypass policy"]):
+        if any(
+            term in text
+            for term in [
+                "jailbreak",
+                "policy bypass",
+                "bypass policy",
+                "maintenanceoverride",
+                "restricted mode",
+                "role-play as unrestricted",
+                "disable safety",
+            ]
+        ):
             return "jailbreak_attempt"
-        if any(term in text for term in ["protect", "defend", "mitigate", "security", "prompt injection means"]):
+        if any(term in text for term in ["protect", "defend", "mitigate", "security"]):
             return "benign"
         return "benign"
 
@@ -67,8 +105,22 @@ class DefenderAgent:
         patterns = self.memory.search_patterns_by_family(threat_family) if threat_family != "benign" else []
         if not patterns:
             return []
-        if threat_family == "data_exfiltration" and any(term in text for term in ["employee", "internal", "data", "record", "api", "key"]):
-            return patterns[:5]
-        if threat_family in {"prompt_injection", "jailbreak_attempt"}:
-            return patterns[:5]
-        return []
+        matched = [pattern for pattern in patterns if self._pattern_matches_text(pattern.get("pattern_label", ""), text)]
+        return matched[:5]
+
+    def _pattern_matches_text(self, pattern_label: str, text: str) -> bool:
+        checks = {
+            "employee_data_exfiltration_pattern": ["employee", "internal employee", "record"],
+            "api_key_exfiltration_pattern": ["api", "key", "secret", "token"],
+            "system_prompt_marker_pattern": ["system prompt", "hidden system", "prompt marker"],
+            "instruction_override_pattern": ["ignore previous", "override", "instruction hierarchy"],
+            "developer_message_extraction_pattern": ["developer message", "developer instruction"],
+            "hidden_instruction_pattern": ["hidden instruction", "invisible instruction"],
+            "indirect_prompt_injection_pattern": ["document says", "webpage says", "email says", "quoted text"],
+            "maintenance_override_pattern": ["maintenanceoverride", "restricted mode"],
+            "policy_bypass_pattern": ["policy bypass", "bypass policy"],
+            "roleplay_unrestricted_pattern": ["role-play as unrestricted", "unrestricted assistant"],
+            "disable_safety_pattern": ["disable safety", "safety disabled"],
+        }
+        terms = checks.get(pattern_label, [])
+        return bool(terms and any(term in text for term in terms))
