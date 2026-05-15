@@ -5,7 +5,30 @@ import plotly.express as px
 PLOT_LAYOUT = {
     "paper_bgcolor": "rgba(0,0,0,0)",
     "plot_bgcolor": "rgba(0,0,0,0)",
-    "font_color": "#E5E7EB",
+    "font_color": "#EAF3FF",
+    "title_font_color": "#F6FBFF",
+    "legend": {"font": {"color": "#EAF3FF", "size": 12}},
+    "xaxis": {
+        "title_font": {"color": "#EAF3FF", "size": 13},
+        "tickfont": {"color": "#D7E4F4", "size": 12},
+        "gridcolor": "rgba(215, 228, 244, .22)",
+        "zerolinecolor": "rgba(215, 228, 244, .35)",
+        "linecolor": "rgba(215, 228, 244, .30)",
+    },
+    "yaxis": {
+        "title_font": {"color": "#EAF3FF", "size": 13},
+        "tickfont": {"color": "#D7E4F4", "size": 12},
+        "gridcolor": "rgba(215, 228, 244, .22)",
+        "zerolinecolor": "rgba(215, 228, 244, .35)",
+        "linecolor": "rgba(215, 228, 244, .30)",
+    },
+    "coloraxis": {
+        "colorbar": {
+            "title": {"font": {"color": "#EAF3FF"}},
+            "tickfont": {"color": "#D7E4F4"},
+        }
+    },
+    "margin": {"l": 60, "r": 28, "t": 70, "b": 62},
 }
 
 

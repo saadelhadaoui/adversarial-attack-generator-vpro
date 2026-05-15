@@ -53,6 +53,64 @@ html, body, [class*="css"] {
 }
 
 h1, h2, h3, h4 {letter-spacing: -0.01em; color: var(--text);}
+.glass h1,
+.glass h2,
+.glass h3,
+.glass h4,
+.arch-card h4,
+.memory-card h4,
+.metric-card .name,
+.threat-title,
+.section-title {
+  color: #f6fbff !important;
+  opacity: 1 !important;
+}
+.glass p,
+.arch-card p,
+.memory-card p,
+.metric-card p,
+.metric-card .desc,
+.agent-card p,
+.agent-card li,
+.loop-step,
+.trace-label {
+  color: var(--muted-strong) !important;
+  opacity: 1 !important;
+}
+.stMarkdown,
+.stMarkdown p,
+.stCaptionContainer,
+[data-testid="stCaptionContainer"],
+[data-testid="stMarkdownContainer"],
+[data-testid="stMarkdownContainer"] p,
+[data-testid="stExpander"] summary,
+[data-testid="stExpander"] p {
+  color: var(--muted-strong) !important;
+  opacity: 1 !important;
+}
+.stMetric label,
+[data-testid="stMetricLabel"],
+[data-testid="stMetricLabel"] p,
+[data-testid="stMetricValue"],
+[data-testid="stMetricValue"] div {
+  color: #f0f7ff !important;
+  opacity: 1 !important;
+}
+.js-plotly-plot text,
+.plotly text {
+  fill: #eaf3ff !important;
+  opacity: 1 !important;
+}
+.js-plotly-plot .gtitle,
+.plotly .gtitle,
+.js-plotly-plot .xtitle,
+.js-plotly-plot .ytitle,
+.plotly .xtitle,
+.plotly .ytitle {
+  fill: #f6fbff !important;
+  opacity: 1 !important;
+  font-weight: 700 !important;
+}
 p,
 small,
 label,
