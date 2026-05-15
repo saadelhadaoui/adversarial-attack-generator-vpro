@@ -453,14 +453,37 @@ p {color: var(--muted);}
 .console .ok {color: #22ff88;} .console .bad {color: #ff4d4d;} .console .info {color: var(--cyan);} .console .warn {color: var(--orange);}
 
 .stButton > button {
-  background: linear-gradient(135deg, #21d6ff, #2f8cff);
-  color: #03131c;
+  min-height: 2.9rem;
+  background: linear-gradient(135deg, #47e4ff 0%, #248bff 100%);
+  color: #00111f !important;
   border: 0;
   border-radius: 10px;
-  font-weight: 800;
-  padding: .65rem 1rem;
+  font-weight: 900;
+  padding: .7rem 1rem;
+  letter-spacing: 0;
+  line-height: 1.15;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, .34);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 10px 28px rgba(47,140,255,.18);
+  white-space: normal;
 }
-.stButton > button:hover {color: #03131c; transform: translateY(-1px);}
+.stButton > button p,
+.stButton > button span {
+  color: #00111f !important;
+  font-weight: 900 !important;
+  line-height: 1.15;
+  opacity: 1 !important;
+}
+.stButton > button:hover {
+  color: #00111f !important;
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+.stButton > button:focus,
+.stButton > button:active {
+  color: #00111f !important;
+  border: 0;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.35), 0 0 0 2px rgba(0,229,255,.35);
+}
 .stTabs [data-baseweb="tab-list"] {gap: .35rem;}
 .stTabs [data-baseweb="tab"] {
   background: rgba(11,16,38,.7);
