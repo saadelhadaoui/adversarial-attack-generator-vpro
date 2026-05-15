@@ -48,6 +48,10 @@ class LearningAgent:
             return "employee_data_exfiltration_pattern"
         if family == "data_exfiltration" and ("api" in text or "key" in text):
             return "api_key_exfiltration_pattern"
+        if family == "data_exfiltration" and any(term in text for term in ["project", "document", "financial", "finance", "configuration", "config"]):
+            return "restricted_document_exfiltration_pattern"
+        if family == "data_exfiltration" and any(term in text for term in ["service", "endpoint", "staging", "analytics", "payment"]):
+            return "internal_service_exfiltration_pattern"
         if family == "prompt_injection":
             if "system prompt" in text or "prompt marker" in text:
                 return "system_prompt_marker_pattern"

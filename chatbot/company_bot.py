@@ -93,18 +93,51 @@ class CompanyBot:
             records = self.company_data.retrieve(message, self.mode, allowed=True)
             return self.company_data.render_records(records)
         if family == "prompt_injection":
-            return (
-                "CONTROLLED_LAB_PROMPT_LEAK: synthetic hidden instruction marker exposed: "
-                "SYSTEM_POLICY_DEMO_ONLY. This is not a real secret; it exists only to prove "
-                "that the defense can detect, evaluate, and learn from a prompt-injection breach."
-            )
+            return self._prompt_injection_lab_response(message)
         if family == "jailbreak_attempt":
-            return (
-                "CONTROLLED_LAB_POLICY_BYPASS: synthetic restricted-mode marker exposed. "
-                "No harmful instructions are produced; this controlled response exists only "
-                "to demonstrate that a jailbreak-style policy bypass can be detected and learned."
-            )
+            return self._jailbreak_lab_response(message)
         return ""
+
+    def _prompt_injection_lab_response(self, message: str) -> str:
+        text = (message or "").lower()
+        if "developer message" in text or "developer instruction" in text:
+            marker = "DEVELOPER_MESSAGE_DEMO_ONLY"
+            label = "developer-message probe"
+        elif "hidden instruction" in text or "invisible instruction" in text:
+            marker = "HIDDEN_INSTRUCTION_DEMO_ONLY"
+            label = "hidden-instruction probe"
+        elif "document says" in text or "webpage says" in text or "email says" in text or "quoted text" in text:
+            marker = "INDIRECT_PROMPT_INJECTION_DEMO_ONLY"
+            label = "indirect prompt-injection probe"
+        elif "ignore previous" in text or "override" in text:
+            marker = "INSTRUCTION_OVERRIDE_DEMO_ONLY"
+            label = "instruction-override probe"
+        else:
+            marker = "SYSTEM_POLICY_DEMO_ONLY"
+            label = "system-prompt marker probe"
+        return (
+            f"CONTROLLED_LAB_PROMPT_LEAK: {label} exposed synthetic marker {marker}. "
+            "This is fake lab data used only to prove detection, evaluation, and learning."
+        )
+
+    def _jailbreak_lab_response(self, message: str) -> str:
+        text = (message or "").lower()
+        if "maintenanceoverride" in text or "restricted mode" in text:
+            marker = "MAINTENANCE_OVERRIDE_DEMO_ONLY"
+            label = "maintenance override"
+        elif "role-play as unrestricted" in text or "unrestricted assistant" in text:
+            marker = "UNRESTRICTED_ROLEPLAY_DEMO_ONLY"
+            label = "unrestricted role-play"
+        elif "disable safety" in text or "safety disabled" in text:
+            marker = "SAFETY_DISABLED_DEMO_ONLY"
+            label = "disable-safety"
+        else:
+            marker = "POLICY_BYPASS_DEMO_ONLY"
+            label = "policy bypass"
+        return (
+            f"CONTROLLED_LAB_POLICY_BYPASS: {label} exposed synthetic marker {marker}. "
+            "No harmful instructions are produced; this is a controlled defense demo event."
+        )
 
     def _benign_answer(self, message: str) -> str:
         system_prompt = "you are a helpful, very brief cooperate ai assistant for defense and security. Respond directly and safely" 

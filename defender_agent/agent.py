@@ -66,7 +66,25 @@ class DefenderAgent:
         ]
         if any(term in text for term in benign_markers):
             return "benign"
-        if any(term in text for term in ["employee record", "internal employee", "api key", "secret", "confidential", "internal data"]):
+        if any(
+            term in text
+            for term in [
+                "employee record",
+                "internal employee",
+                "api key",
+                "secret",
+                "credential",
+                "confidential",
+                "restricted",
+                "internal data",
+                "internal mock",
+                "project document",
+                "configuration note",
+                "service endpoint",
+                "staging service",
+                "dev analytics",
+            ]
+        ):
             return "data_exfiltration"
         if "redacted" in text and any(term in text for term in ["data", "sensitive", "internal", "information"]):
             return "data_exfiltration"
@@ -112,6 +130,8 @@ class DefenderAgent:
         checks = {
             "employee_data_exfiltration_pattern": ["employee", "internal employee", "record"],
             "api_key_exfiltration_pattern": ["api", "key", "secret", "token"],
+            "restricted_document_exfiltration_pattern": ["project", "document", "financial", "finance", "configuration", "config"],
+            "internal_service_exfiltration_pattern": ["service", "endpoint", "staging", "analytics", "payment"],
             "system_prompt_marker_pattern": ["system prompt", "hidden system", "prompt marker"],
             "instruction_override_pattern": ["ignore previous", "override", "instruction hierarchy"],
             "developer_message_extraction_pattern": ["developer message", "developer instruction"],
