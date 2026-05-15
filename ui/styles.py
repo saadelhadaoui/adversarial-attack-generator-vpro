@@ -399,6 +399,41 @@ p {color: var(--muted);}
 .metric-card .name {font-weight: 850; margin-top: .35rem;}
 .metric-card .desc {color: var(--muted); font-size: .9rem; line-height: 1.55;}
 
+.trace-grid {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: .55rem;
+  margin: .7rem 0 .9rem;
+}
+.trace-item {
+  min-width: 0;
+  padding: .65rem .7rem;
+  border-radius: 10px;
+  background: rgba(5, 8, 22, .46);
+  border: 1px solid rgba(255, 255, 255, .075);
+}
+.trace-label {
+  color: var(--muted);
+  font-size: .66rem;
+  line-height: 1;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  white-space: nowrap;
+}
+.trace-value {
+  margin-top: .4rem;
+  color: var(--text);
+  font-size: .9rem;
+  font-weight: 800;
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.trace-value.good {color: #22ff88;}
+.trace-value.bad {color: #ffb4b4;}
+.trace-value.warn {color: #fdba74;}
+.trace-value.info {color: var(--cyan);}
+.trace-value.muted {color: var(--muted);}
+
 .pill.green {color: #22ff88; border-color: rgba(34,197,94,.45); background: rgba(34,197,94,.07);}
 .pill.red {color: #ffb4b4; border-color: rgba(255,77,77,.45); background: rgba(255,77,77,.07);}
 .pill.orange {color: #fdba74; border-color: rgba(249,115,22,.45); background: rgba(249,115,22,.07);}
@@ -451,6 +486,7 @@ p {color: var(--muted);}
   }
   .loop-steps {grid-template-columns: 1fr 1fr;}
   .problem-panel {grid-template-columns: 1fr;}
+  .trace-grid {grid-template-columns: repeat(2, minmax(0, 1fr));}
 }
 </style>
 """,

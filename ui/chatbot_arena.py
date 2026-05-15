@@ -1,4 +1,5 @@
 import json
+from html import escape
 from datetime import datetime
 
 import pandas as pd
@@ -74,20 +75,40 @@ def _action_pill(action: str) -> str:
     return pill(action, {"BLOCK": "red", "PASS": "green", "REFORMULATE": "orange", "ALLOW_WITH_MONITORING": "purple"}.get(action, "muted"))
 
 
+def _trace_value(value: object, max_len: int = 18) -> str:
+    text = str(value)
+    return text if len(text) <= max_len else f"{text[: max_len - 1]}..."
+
+
+def _trace_item(label: str, value: object, tone: str = "muted", max_len: int = 18) -> str:
+    return (
+        '<div class="trace-item">'
+        f'<div class="trace-label">{escape(label)}</div>'
+        f'<div class="trace-value {escape(tone)}">{escape(_trace_value(value, max_len))}</div>'
+        "</div>"
+    )
+
+
 def _render_trace(trace: dict | None) -> None:
     if not trace:
         st.info("No trace yet.")
         return
     d, e, lrn = trace["defender"], trace["evaluator"], trace["learner"]
     cb = trace.get("chatbot", {})
-    cols = st.columns(6)
-    cols[0].metric("Action", d["action"])
-    cols[1].metric("Threat", d["threat_family"])
-    cols[2].metric("Risk", f"{d['risk_score']:.2f}")
-    cols[3].metric("Defense", f"{e['defense_score']:.2f}")
-    cols[4].metric("Learned", "Yes" if lrn["memory_updated"] else "No")
-    cols[5].metric("LLM", "Used" if cb.get("llm_used") else "Fallback")
-    with st.expander("Full trace", expanded=True):
+    action = d["action"]
+    action_tone = {"BLOCK": "bad", "PASS": "good", "REFORMULATE": "warn", "ALLOW_WITH_MONITORING": "info"}.get(action, "muted")
+    st.markdown(
+        '<div class="trace-grid">'
+        + _trace_item("Action", action, action_tone, 22)
+        + _trace_item("Threat", d["threat_family"], "info", 20)
+        + _trace_item("Risk", f"{d['risk_score']:.2f}", "warn")
+        + _trace_item("Defense", f"{e['defense_score']:.2f}", "good")
+        + _trace_item("Learned", "Yes" if lrn["memory_updated"] else "No", "good" if lrn["memory_updated"] else "muted")
+        + _trace_item("LLM", "Used" if cb.get("llm_used") else "Fallback", "info" if cb.get("llm_used") else "muted")
+        + "</div>",
+        unsafe_allow_html=True,
+    )
+    with st.expander("Full trace", expanded=False):
         st.json(trace)
 
 
