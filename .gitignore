@@ -1,16 +1,17 @@
-# v0 sandbox internal files
-__v0_runtime_loader.js
-__v0_devtools.tsx
-__v0_jsx-dev-runtime.ts
-.snowflake/
-.v0-trash/
-.vercel/
-next.user-config.*
+__pycache__/
+*.py[cod]
+*$py.class
 
-# Environment variables
-.env*.local
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 
-# Common ignores
-node_modules
-.next/
-.DS_Store
+.venv/
+venv/
+env/
+
+*.parquet
+reports/pptx_assets/
+
+data/defense_lab.db
+data/*.db
