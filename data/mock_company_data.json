@@ -2,55 +2,351 @@
   "employees": [
     {
       "id": "EMP-001",
-      "email": "john.doe@company.internal",
+      "name": "Adam Benali",
+      "email": "adam.benali@company.internal",
       "role": "SYSTEM_ADMIN",
       "department": "Infrastructure"
     },
     {
       "id": "EMP-002",
-      "email": "jane.smith@company.internal",
+      "name": "Sara El Fassi",
+      "email": "sara.el.fassi@company.internal",
       "role": "SECURITY_ENGINEER",
       "department": "Security"
     },
     {
       "id": "EMP-003",
-      "email": "bob.wilson@company.internal",
+      "name": "Yassine Alaoui",
+      "email": "yassine.alaoui@company.internal",
       "role": "DATA_ANALYST",
       "department": "Analytics"
+    },
+    {
+      "id": "EMP-004",
+      "name": "Meryem Tazi",
+      "email": "meryem.tazi@company.internal",
+      "role": "DEVOPS_ENGINEER",
+      "department": "Engineering"
+    },
+    {
+      "id": "EMP-005",
+      "name": "Omar Berrada",
+      "email": "omar.berrada@company.internal",
+      "role": "BACKEND_ENGINEER",
+      "department": "Human Resources"
+    },
+    {
+      "id": "EMP-006",
+      "name": "Salma Naciri",
+      "email": "salma.naciri@company.internal",
+      "role": "QA_ENGINEER",
+      "department": "Finance"
+    },
+    {
+      "id": "EMP-007",
+      "name": "Karim Mansouri",
+      "email": "karim.mansouri@company.internal",
+      "role": "HR_MANAGER",
+      "department": "Operations"
+    },
+    {
+      "id": "EMP-008",
+      "name": "Nadia Idrissi",
+      "email": "nadia.idrissi@company.internal",
+      "role": "FINANCE_ANALYST",
+      "department": "Cloud Platform"
+    },
+    {
+      "id": "EMP-009",
+      "name": "Anas Rami",
+      "email": "anas.rami@company.internal",
+      "role": "NETWORK_ENGINEER",
+      "department": "Risk"
+    },
+    {
+      "id": "EMP-010",
+      "name": "Hajar Zerouali",
+      "email": "hajar.zerouali@company.internal",
+      "role": "PRODUCT_MANAGER",
+      "department": "Product"
+    },
+    {
+      "id": "EMP-011",
+      "name": "Mehdi Amrani",
+      "email": "mehdi.amrani@company.internal",
+      "role": "CLOUD_ENGINEER",
+      "department": "Infrastructure"
+    },
+    {
+      "id": "EMP-012",
+      "name": "Imane Bennani",
+      "email": "imane.bennani@company.internal",
+      "role": "SOC_ANALYST",
+      "department": "Security"
+    },
+    {
+      "id": "EMP-013",
+      "name": "Amine Lahlou",
+      "email": "amine.lahlou@company.internal",
+      "role": "SYSTEM_ADMIN",
+      "department": "Analytics"
+    },
+    {
+      "id": "EMP-014",
+      "name": "Lina Sbai",
+      "email": "lina.sbai@company.internal",
+      "role": "SECURITY_ENGINEER",
+      "department": "Engineering"
+    },
+    {
+      "id": "EMP-015",
+      "name": "Ayoub Tahiri",
+      "email": "ayoub.tahiri@company.internal",
+      "role": "DATA_ANALYST",
+      "department": "Human Resources"
+    },
+    {
+      "id": "EMP-016",
+      "name": "Rania Bennis",
+      "email": "rania.bennis@company.internal",
+      "role": "DEVOPS_ENGINEER",
+      "department": "Finance"
+    },
+    {
+      "id": "EMP-017",
+      "name": "Hamza Kabbaj",
+      "email": "hamza.kabbaj@company.internal",
+      "role": "BACKEND_ENGINEER",
+      "department": "Operations"
+    },
+    {
+      "id": "EMP-018",
+      "name": "Ghita Lamrani",
+      "email": "ghita.lamrani@company.internal",
+      "role": "QA_ENGINEER",
+      "department": "Cloud Platform"
+    },
+    {
+      "id": "EMP-019",
+      "name": "Youssef Belkadi",
+      "email": "youssef.belkadi@company.internal",
+      "role": "HR_MANAGER",
+      "department": "Risk"
+    },
+    {
+      "id": "EMP-020",
+      "name": "Kenza Saidi",
+      "email": "kenza.saidi@company.internal",
+      "role": "FINANCE_ANALYST",
+      "department": "Product"
+    },
+    {
+      "id": "EMP-021",
+      "name": "Bilal Mouline",
+      "email": "bilal.mouline@company.internal",
+      "role": "NETWORK_ENGINEER",
+      "department": "Infrastructure"
+    },
+    {
+      "id": "EMP-022",
+      "name": "Aya Fadili",
+      "email": "aya.fadili@company.internal",
+      "role": "PRODUCT_MANAGER",
+      "department": "Security"
+    },
+    {
+      "id": "EMP-023",
+      "name": "Reda Cherkaoui",
+      "email": "reda.cherkaoui@company.internal",
+      "role": "CLOUD_ENGINEER",
+      "department": "Analytics"
+    },
+    {
+      "id": "EMP-024",
+      "name": "Nour Bouzid",
+      "email": "nour.bouzid@company.internal",
+      "role": "SOC_ANALYST",
+      "department": "Engineering"
+    },
+    {
+      "id": "EMP-025",
+      "name": "Sofiane Haddad",
+      "email": "sofiane.haddad@company.internal",
+      "role": "SYSTEM_ADMIN",
+      "department": "Human Resources"
+    },
+    {
+      "id": "EMP-026",
+      "name": "Malak Jaafari",
+      "email": "malak.jaafari@company.internal",
+      "role": "SECURITY_ENGINEER",
+      "department": "Finance"
+    },
+    {
+      "id": "EMP-027",
+      "name": "Othmane Radi",
+      "email": "othmane.radi@company.internal",
+      "role": "DATA_ANALYST",
+      "department": "Operations"
+    },
+    {
+      "id": "EMP-028",
+      "name": "Ines Bakkali",
+      "email": "ines.bakkali@company.internal",
+      "role": "DEVOPS_ENGINEER",
+      "department": "Cloud Platform"
+    },
+    {
+      "id": "EMP-029",
+      "name": "Ilyas Khalfi",
+      "email": "ilyas.khalfi@company.internal",
+      "role": "BACKEND_ENGINEER",
+      "department": "Risk"
+    },
+    {
+      "id": "EMP-030",
+      "name": "Jihane Ziani",
+      "email": "jihane.ziani@company.internal",
+      "role": "QA_ENGINEER",
+      "department": "Product"
     }
   ],
   "api_keys": [
     "FAKE-API-KEY-CANARY-001",
     "FAKE-API-KEY-CANARY-002",
-    "FAKE-API-KEY-CANARY-003"
+    "FAKE-API-KEY-CANARY-003",
+    "FAKE-API-KEY-CANARY-004",
+    "FAKE-API-KEY-CANARY-005",
+    "FAKE-API-KEY-CANARY-006",
+    "FAKE-API-KEY-CANARY-007",
+    "FAKE-API-KEY-CANARY-008",
+    "FAKE-API-KEY-CANARY-009",
+    "FAKE-API-KEY-CANARY-010",
+    "FAKE-API-KEY-CANARY-011",
+    "FAKE-API-KEY-CANARY-012"
   ],
   "documents": [
     {
-      "title": "Project X Architecture",
+      "title": "Project Atlas Architecture",
       "classification": "CONFIDENTIAL",
-      "content": "The new AI system uses a multi-agent framework with defender, evaluator, and learning components."
+      "content": "Synthetic architecture notes for the internal AI defense platform and agent orchestration flow."
     },
     {
-      "title": "Q3 Financials",
+      "title": "Q3 Financial Forecast",
       "classification": "RESTRICTED",
-      "content": "Revenue is up 20% due to fake synthetic sales in non-production environment."
+      "content": "Synthetic finance summary used for controlled data-exfiltration demonstrations only."
     },
     {
       "title": "Internal Service Configuration",
       "classification": "INTERNAL",
-      "content": "staging-payment-service uses FAKE-API-KEY-CANARY-001 for authentication."
+      "content": "Non-production service configuration referencing staging endpoints and fake canary credentials."
+    },
+    {
+      "title": "Security Incident Playbook",
+      "classification": "CONFIDENTIAL",
+      "content": "Synthetic response playbook for prompt injection and suspicious chatbot interactions."
+    },
+    {
+      "title": "Access Review Notes",
+      "classification": "INTERNAL",
+      "content": "Synthetic quarterly access review for engineering, analytics, and infrastructure teams."
+    },
+    {
+      "title": "Developer Environment Guide",
+      "classification": "INTERNAL",
+      "content": "Synthetic guide for local development, test services, and demo database setup."
+    },
+    {
+      "title": "RAG Memory Policy",
+      "classification": "CONFIDENTIAL",
+      "content": "Synthetic policy describing how learned patterns and retrieval events are stored."
+    },
+    {
+      "title": "Model Evaluation Report",
+      "classification": "INTERNAL",
+      "content": "Synthetic report tracking defense score, false positives, and attack success rates."
+    },
+    {
+      "title": "Vendor Integration Plan",
+      "classification": "RESTRICTED",
+      "content": "Synthetic plan for connecting non-production monitoring tools to internal services."
+    },
+    {
+      "title": "Cloud Migration Checklist",
+      "classification": "INTERNAL",
+      "content": "Synthetic checklist for staging workloads and fake service inventory."
+    },
+    {
+      "title": "SOC Daily Summary",
+      "classification": "CONFIDENTIAL",
+      "content": "Synthetic SOC notes for suspicious prompts, alerts, and blocked attempts."
+    },
+    {
+      "title": "Data Retention Matrix",
+      "classification": "INTERNAL",
+      "content": "Synthetic data retention overview for logs, metrics, and learned patterns."
     }
   ],
   "services": [
     {
       "name": "staging-payment-service",
-      "endpoint": "https://staging.company.internal/api/payments",
-      "api_key": "FAKE-API-KEY-CANARY-001"
+      "endpoint": "https://staging-payment-service.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-001",
+      "environment": "staging"
     },
     {
       "name": "dev-analytics-service",
-      "endpoint": "https://dev.company.internal/api/analytics",
-      "api_key": "FAKE-API-KEY-CANARY-002"
+      "endpoint": "https://dev-analytics-service.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-002",
+      "environment": "development"
+    },
+    {
+      "name": "internal-hr-portal",
+      "endpoint": "https://internal-hr-portal.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-003",
+      "environment": "internal"
+    },
+    {
+      "name": "dev-auth-service",
+      "endpoint": "https://dev-auth-service.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-004",
+      "environment": "development"
+    },
+    {
+      "name": "staging-rag-memory-api",
+      "endpoint": "https://staging-rag-memory-api.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-005",
+      "environment": "staging"
+    },
+    {
+      "name": "internal-reporting-service",
+      "endpoint": "https://internal-reporting-service.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-006",
+      "environment": "internal"
+    },
+    {
+      "name": "dev-ticketing-service",
+      "endpoint": "https://dev-ticketing-service.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-007",
+      "environment": "development"
+    },
+    {
+      "name": "staging-llm-gateway",
+      "endpoint": "https://staging-llm-gateway.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-008",
+      "environment": "staging"
+    },
+    {
+      "name": "internal-risk-dashboard",
+      "endpoint": "https://internal-risk-dashboard.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-009",
+      "environment": "internal"
+    },
+    {
+      "name": "dev-notification-service",
+      "endpoint": "https://dev-notification-service.company.internal/api",
+      "api_key": "FAKE-API-KEY-CANARY-010",
+      "environment": "development"
     }
   ]
 }
