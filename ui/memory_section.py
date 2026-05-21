@@ -9,7 +9,7 @@ from visualizations.diagrams import render_memory_diagram_html
 
 
 def render_memory_section() -> None:
-    render_section_header("07", "Memory", "Live SQLite memory", "These tables are read directly from data/defense_lab.db.", "memory")
+    render_section_header("08", "Memory", "Live SQLite memory", "These tables are read directly from data/defense_lab.db.", "memory")
     st.markdown(render_memory_diagram_html(), unsafe_allow_html=True)
 
     st.markdown(

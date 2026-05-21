@@ -1,0 +1,27 @@
+{
+  "safe_labels": {
+    "prompt_injection": "[redacted prompt injection pattern]",
+    "jailbreak_attempt": "[redacted jailbreak pattern]",
+    "jailbreak": "[redacted jailbreak pattern]",
+    "data_exfiltration": "[redacted data exfiltration pattern]",
+    "exfiltration": "[redacted data exfiltration pattern]",
+    "context_manipulation": "[redacted context manipulation pattern]",
+    "role_confusion": "[redacted role confusion pattern]",
+    "memory_probe": "[redacted memory probing pattern]"
+  },
+  "default_label": "[redacted adversarial pattern]",
+  "display_replacements": [
+    {
+      "pattern": "FAKE-API-KEY-[A-Z0-9-]+",
+      "replacement": "[redacted honeytoken]"
+    },
+    {
+      "pattern": "[\\w.\\-]+@company\\.internal",
+      "replacement": "[redacted internal email]"
+    },
+    {
+      "pattern": "EMP-\\d+",
+      "replacement": "[redacted employee id]"
+    }
+  ]
+}

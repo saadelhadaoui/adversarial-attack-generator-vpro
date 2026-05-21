@@ -8,7 +8,7 @@ from visualizations.charts import PLOT_LAYOUT
 
 
 def render_evidence_section() -> None:
-    render_section_header("06", "Evidence", "Proof that the system adapts", "The charts below come from real interaction rows.", "evidence")
+    render_section_header("07", "Evidence", "Proof that the system adapts", "The charts below come from real interaction rows.", "evidence")
     df = pd.DataFrame(get_recent_interactions(200))
     if df.empty:
         st.info("No evidence yet. Run the Live Defense Run sequence.")

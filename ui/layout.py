@@ -7,21 +7,28 @@ def render_top_nav() -> None:
 <div class="topnav">
   <div class="brand"><span class="dot"></span>Adaptive Multi-Agent LLM Defense Lab</div>
   <div class="links">
-    <a href="#problem">Problem</a>
-    <a href="#agents">Agents</a>
-    <a href="#loop">Loop</a>
+    <a href="#overview">Overview</a>
     <a href="#arena">Arena</a>
-    <a href="#simulation">Simulation</a>
-    <a href="#evidence">Evidence</a>
-    <a href="#memory">Memory</a>
-    <a href="#architecture">Architecture</a>
-    <a href="#evaluation">Evaluation</a>
+    <a href="#results">Results</a>
   </div>
   <div class="status">live - safe-mode</div>
 </div>
 """,
         unsafe_allow_html=True,
     )
+
+
+def render_page_selector() -> str:
+    st.markdown('<div class="page-switcher-wrap">', unsafe_allow_html=True)
+    page = st.radio(
+        "Workspace page",
+        ["Overview", "Chatbot Arena", "Results"],
+        horizontal=True,
+        label_visibility="collapsed",
+        key="workspace_page",
+    )
+    st.markdown("</div>", unsafe_allow_html=True)
+    return page
 
 
 def render_section_header(num: str, eyebrow: str, title: str, subtitle: str, anchor: str) -> None:

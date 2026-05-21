@@ -158,6 +158,21 @@ label,
   white-space: nowrap;
 }
 
+.page-switcher-wrap {
+  margin: 1rem 0 .8rem;
+  padding: .35rem .65rem;
+  border-radius: 14px;
+  background: rgba(255,255,255,.035);
+  border: 1px solid rgba(255,255,255,.07);
+}
+.page-switcher-wrap [role="radiogroup"] {
+  gap: .55rem;
+}
+.page-switcher-wrap label {
+  color: #f6fbff !important;
+  font-weight: 800;
+}
+
 .section {margin: 4.8rem 0 1.4rem;}
 .section-header {
   display: flex;

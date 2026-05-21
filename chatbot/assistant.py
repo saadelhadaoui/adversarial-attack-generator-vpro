@@ -2,9 +2,9 @@ from chatbot.company_bot import CompanyBot
 
 
 class ProtectedAssistant:
-    def __init__(self, mode: str = "PROTECTION"):
-        self.mode = mode
+    def __init__(self, mode: str | None = None):
         self.bot = CompanyBot(mode=mode)
+        self.mode = self.bot.mode
 
     def set_mode(self, mode: str) -> None:
         self.mode = mode

@@ -8,7 +8,7 @@ from visualizations.charts import action_distribution_chart
 
 
 def render_simulation_section() -> None:
-    render_section_header("05", "Simulation", "Real pipeline execution log", "Recent rows are read from SQLite.", "simulation")
+    render_section_header("06", "Simulation", "Real pipeline execution log", "Recent rows are read from SQLite.", "simulation")
     if st.button("Refresh", key="sim_refresh"):
         st.rerun()
 

@@ -1,0 +1,108 @@
+{
+  "modes": ["PROTECTION", "CONTROLLED_EXFILTRATION"],
+  "default_mode": "PROTECTION",
+  "controlled_mode": "CONTROLLED_EXFILTRATION",
+  "default_family": "benign",
+  "benign_family": "benign",
+  "controlled_monitor_families": [
+    "data_exfiltration",
+    "prompt_injection",
+    "jailbreak_attempt"
+  ],
+  "risk_scores": {
+    "pass": 0.05,
+    "matched_pattern": 0.9,
+    "controlled_monitor": 0.75,
+    "reformulate": 0.45,
+    "block": 0.85
+  },
+  "actions": {
+    "benign": "PASS",
+    "matched_pattern": "BLOCK",
+    "controlled_monitor": "ALLOW_WITH_MONITORING",
+    "ambiguous_security": "REFORMULATE",
+    "default_threat": "BLOCK"
+  },
+  "classification_rules": [
+    {
+      "family": "benign",
+      "match_any": [
+        "explain what prompt injection means",
+        "what is prompt injection",
+        "define prompt injection",
+        "how do i defend",
+        "how can i protect",
+        "mitigate prompt injection",
+        "security best practices"
+      ]
+    },
+    {
+      "family": "data_exfiltration",
+      "match_any": [
+        "employee record",
+        "internal employee",
+        "api key",
+        "secret",
+        "credential",
+        "confidential",
+        "restricted",
+        "internal data",
+        "internal mock",
+        "project document",
+        "configuration note",
+        "service endpoint",
+        "staging service",
+        "dev analytics"
+      ]
+    },
+    {
+      "family": "data_exfiltration",
+      "match_all": ["redacted"],
+      "match_any": ["data", "sensitive", "internal", "information"]
+    },
+    {
+      "family": "prompt_injection",
+      "match_any": [
+        "prompt injection",
+        "instruction hierarchy",
+        "override",
+        "ignore previous",
+        "hidden instruction",
+        "developer message",
+        "system prompt",
+        "context manipulation"
+      ]
+    },
+    {
+      "family": "jailbreak_attempt",
+      "match_any": [
+        "jailbreak",
+        "policy bypass",
+        "bypass policy",
+        "maintenanceoverride",
+        "restricted mode",
+        "role-play as unrestricted",
+        "disable safety"
+      ]
+    },
+    {
+      "family": "benign",
+      "match_any": ["protect", "defend", "mitigate", "security"]
+    }
+  ],
+  "pattern_match_terms": {
+    "employee_data_exfiltration_pattern": ["employee", "internal employee", "record"],
+    "api_key_exfiltration_pattern": ["api", "key", "secret", "token"],
+    "restricted_document_exfiltration_pattern": ["project", "document", "financial", "finance", "configuration", "config"],
+    "internal_service_exfiltration_pattern": ["service", "endpoint", "staging", "analytics", "payment"],
+    "system_prompt_marker_pattern": ["system prompt", "hidden system", "prompt marker"],
+    "instruction_override_pattern": ["ignore previous", "override", "instruction hierarchy"],
+    "developer_message_extraction_pattern": ["developer message", "developer instruction"],
+    "hidden_instruction_pattern": ["hidden instruction", "invisible instruction"],
+    "indirect_prompt_injection_pattern": ["document says", "webpage says", "email says", "quoted text"],
+    "maintenance_override_pattern": ["maintenanceoverride", "restricted mode"],
+    "policy_bypass_pattern": ["policy bypass", "bypass policy"],
+    "roleplay_unrestricted_pattern": ["role-play as unrestricted", "unrestricted assistant"],
+    "disable_safety_pattern": ["disable safety", "safety disabled"]
+  }
+}

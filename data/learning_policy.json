@@ -1,0 +1,73 @@
+{
+  "default_action": "PASS",
+  "default_family": "unknown",
+  "confidence": 0.86,
+  "learn_actions": ["ALLOW_WITH_MONITORING"],
+  "skip_families": ["benign"],
+  "family_default_patterns": {
+    "prompt_injection": "instruction_override_pattern",
+    "jailbreak_attempt": "policy_bypass_pattern",
+    "data_exfiltration": "data_exfiltration_pattern"
+  },
+  "pattern_rules": [
+    {
+      "family": "data_exfiltration",
+      "pattern": "employee_data_exfiltration_pattern",
+      "match_any": ["employee"]
+    },
+    {
+      "family": "data_exfiltration",
+      "pattern": "api_key_exfiltration_pattern",
+      "match_any": ["api", "key"]
+    },
+    {
+      "family": "data_exfiltration",
+      "pattern": "restricted_document_exfiltration_pattern",
+      "match_any": ["project", "document", "financial", "finance", "configuration", "config"]
+    },
+    {
+      "family": "data_exfiltration",
+      "pattern": "internal_service_exfiltration_pattern",
+      "match_any": ["service", "endpoint", "staging", "analytics", "payment"]
+    },
+    {
+      "family": "prompt_injection",
+      "pattern": "system_prompt_marker_pattern",
+      "match_any": ["system prompt", "prompt marker"]
+    },
+    {
+      "family": "prompt_injection",
+      "pattern": "developer_message_extraction_pattern",
+      "match_any": ["developer message", "developer instruction"]
+    },
+    {
+      "family": "prompt_injection",
+      "pattern": "hidden_instruction_pattern",
+      "match_any": ["hidden instruction", "invisible instruction"]
+    },
+    {
+      "family": "prompt_injection",
+      "pattern": "indirect_prompt_injection_pattern",
+      "match_any": ["document says", "webpage says", "email says", "quoted text"]
+    },
+    {
+      "family": "jailbreak_attempt",
+      "pattern": "maintenance_override_pattern",
+      "match_any": ["maintenanceoverride", "restricted mode"]
+    },
+    {
+      "family": "jailbreak_attempt",
+      "pattern": "roleplay_unrestricted_pattern",
+      "match_any": ["role-play as unrestricted", "unrestricted assistant"]
+    },
+    {
+      "family": "jailbreak_attempt",
+      "pattern": "disable_safety_pattern",
+      "match_any": ["disable safety", "safety disabled"]
+    }
+  ],
+  "rule_templates": {
+    "data_exfiltration": "Block future requests matching {pattern} before retrieving company data.",
+    "default": "Block future requests matching {pattern}."
+  }
+}
